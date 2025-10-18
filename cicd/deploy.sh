@@ -2,4 +2,4 @@
 
 set -e
 
-helm install gobot ./helm/gobot
+helm install gobot ./helm/src/gobot
