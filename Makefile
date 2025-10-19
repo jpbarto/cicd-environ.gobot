@@ -1,5 +1,8 @@
 .PHONY: all
 
+setup_local:
+	gh auth token | docker login ghcr.io --username jpbarto --password-stdin
+
 cicd_build:
 	./cicd/build.sh
 
