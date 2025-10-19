@@ -1,0 +1,10 @@
+name: Build commit
+
+on:
+  push
+
+jobs:
+  perform-build:
+    uses: jpbarto/cicd-environ.cicd/.github/workflows/reuse-build.yaml@main
+    with:
+      deliver_snapshot: false
