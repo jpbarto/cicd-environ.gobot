@@ -1,16 +1,22 @@
-FROM golang:alpine
+### BUILDER
+# FROM golang:alpine
+FROM --platform=${BUILDPLATFORM:-linux/amd64} golang:1.16 AS builder
 
-WORKDIR /app
+ARG TARGETPLATFORM
+ARG BUILDPLATFORM
+ARG TARGETOS
+ARG TARGETARCH
 
-# Download the Go modules
-COPY src/go.mod src/go.sum ./
-RUN go mod download
+WORKDIR /app/
 
-# Copy the gobot source code
-COPY src/*.go ./
+ADD ./src/* .
+RUN CGO_ENABLED=0 GOOS=${TARGETOS} GOARCH=${TARGETARCH} go build -ldflags="-w -s" -o /gobot .
 
-# Build gobot
-RUN CGO_ENABLED=0 GOOS=linux go build -o /gobot
+### RUNTIME
+FROM scratch
+
+WORKDIR /app/
+COPY --from=builder /gobot /gobot
 
 EXPOSE 8080
 
