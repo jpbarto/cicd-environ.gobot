@@ -2,7 +2,9 @@
 
 set -e
 
-docker run --rm -d --network host --name gobot-unit-test gobot
+IMAGE_NAME=gobot:${RELEASE_NAME:-'vLocal'}
+
+docker run --rm -d --network host --name gobot-unit-test ${IMAGE_NAME}
 sleep 2
 
 RESP=`curl -s 'http://localhost:8080'`
