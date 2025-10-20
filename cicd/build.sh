@@ -4,7 +4,7 @@ set -e
 
 IMAGE_NAME=gobot:${RELEASE_NAME:-'vLocal'}
 
-if [ "$(docker buildx ls | grep docker-container)" -eq 1 ]; then
+if ! `docker buildx inspect container-builder >/dev/null 2>&1`; then
     docker buildx create \
       --name container-builder \
       --driver docker-container \
