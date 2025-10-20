@@ -1,5 +1,4 @@
 ### BUILDER
-# FROM golang:alpine
 FROM --platform=${BUILDPLATFORM:-linux/amd64} golang:1.16 AS builder
 
 ARG TARGETPLATFORM

@@ -6,3 +6,23 @@ repos:
       - id: check-json
       - id: check-yaml
       - id: trailing-whitespace
+
+  - repo: https://github.com/codespell-project/codespell
+    rev: v2.4.1
+    hooks:
+      - id: codespell
+
+  - repo: https://github.com/checkmake/checkmake.git
+    rev: 0.2.2
+    hooks:
+      - id: checkmake
+
+  - repo: https://github.com/rhysd/actionlint.git
+    rev: v1.7.8
+    hooks:
+      - id: actionlint
+
+  - repo: https://github.com/iamthefij/docker-pre-commit
+    rev: v3.0.1
+    hooks:
+      - id: docker-compose-check
