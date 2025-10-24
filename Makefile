@@ -1,4 +1,4 @@
-.PHONY: all
+.PHONY: all clean test setup_local cicd_build
 
 setup_local:
 	gh auth token | docker login ghcr.io --username jpbarto --password-stdin
@@ -8,6 +8,9 @@ cicd_build:
 
 cicd_unit_test:
 	./cicd/unit_test.sh
+
+cicd_deliver_snapshot:
+	./cicd/deliver_snapshot.sh
 
 cicd_deliver:
 	./cicd/deliver.sh

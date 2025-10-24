@@ -11,10 +11,11 @@ if ! `docker buildx inspect container-builder >/dev/null 2>&1`; then
       --bootstrap --use
 fi
 
+CR_PAT=${CR_PAT:-`gh auth token`}
+GHCR_USER=${GH_ACTOR:-'jpbarto'}
+GHCR_TOKEN=${GITHUB_TOKEN:-$CR_PAT}
+echo $GHCR_TOKEN | docker login ghcr.io -u jpbarto --password-stdin
 docker buildx build \
   --platform linux/amd64,linux/arm64 \
-  --output type=oci,dest=gobot.tgz \
-  --tag ${IMAGE_NAME} \
+  --output type=registry,name=ghcr.io/jpbarto/$IMAGE_NAME,oci-artifact=true \
   .
-
-helm package helm/src/gobot -d helm
