@@ -10,3 +10,9 @@ jobs:
     uses: jpbarto/cicd-environ.cicd/.github/workflows/reuse-build.yaml@main
     with:
       deliver_snapshot: false
+
+    permissions:
+      contents: read
+      packages: write
+      attestations: write
+      id-token: write
