@@ -14,14 +14,14 @@ import (
 	"github.com/google/uuid"
 )
 
-const AGENT_VERSION = "1.0"
+const AGENT_VERSION = "1.3"
 
-////
-//// The following is a modified excerpt from the Chi middleware source
-//// it was modified to remove the ability to detect and NOT process requests
-//// from disconnected clients.  We want to be able to count disconnected
-//// clients as part of application metrics, not outright disregard them.
-////
+// //
+// // The following is a modified excerpt from the Chi middleware source
+// // it was modified to remove the ability to detect and NOT process requests
+// // from disconnected clients.  We want to be able to count disconnected
+// // clients as part of application metrics, not outright disregard them.
+// //
 // token represents a request that is being processed.
 const (
 	errCapacityExceeded = "Server capacity exceeded."
