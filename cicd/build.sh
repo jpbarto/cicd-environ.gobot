@@ -2,7 +2,7 @@
 
 set -e
 
-AVAR='ignore me'
+AVAR='ignore me and again'
 IMAGE_NAME=gobot:${RELEASE_NAME:-'vLocal'}
 
 docker buildx build \
